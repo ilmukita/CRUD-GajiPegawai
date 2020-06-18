@@ -15,6 +15,7 @@
   $result = $conn->query($SQL);
   ?>
   <h1>Data Pegawai</h1>
+  <a href="add.php"><button>Tambah</button></a>
   <hr>
   <table border="1">
     <tr>
