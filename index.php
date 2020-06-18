@@ -51,7 +51,7 @@
         <td>Rp.<?= number_format($d['transportasi'], 0, ',', '.') ?></td>
         <td>Rp.<?= number_format($d['gaji_bersih'], 0, ',', '.') ?></td>
         <td>
-          <a href=""><button>Update</button></a>
+          <a href="update.php?kd=<?= $d['kode_pegawai'] ?>"><button>Update</button></a>
           <a href=""><button>Delete</button></a>
         </td>
       </tr>

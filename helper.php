@@ -53,3 +53,8 @@ function hitung_gajiBersih($gajiPokok, $transportasi)
 {
   return $gajiPokok + $transportasi;
 }
+
+function selected($a, $b)
+{
+  return ($a == $b) ? "selected" : NULL;
+}
