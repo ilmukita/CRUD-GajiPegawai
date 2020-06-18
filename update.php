@@ -9,8 +9,10 @@
 
 <body>
   <h1>Perbaharui data pegawai</h1>
+  <a href="index.php"><button>Batal</button></a>
   <hr>
   <?php
+  session_start();
   require_once "koneksi.php";
   require_once "helper.php";
   $kd = $_GET['kd'];
@@ -18,7 +20,32 @@
   $result = $conn->query("SELECT * FROM tb_pegawai WHERE kode_pegawai='" . $kd . "'");
 
   $dP = $result->fetch_assoc();
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $jabatan = $_POST['jabatan'];
+    $gajiPokok = hitung_gajiPokok($jabatan);
+    $transportasi = hitung_transportasi($gajiPokok);
+    $gajiBersih = hitung_gajiBersih($gajiPokok, $transportasi);
 
+    $SQL = "UPDATE tb_pegawai SET val  WHERE kode_pegawai='" . $kd . "'";
+
+    $value = "kode_pegawai='" . $kd . "',";
+    $value .= "nama='" . $nama . "',";
+    $value .= "jabatan='" . $jabatan . "',";
+    $value .= "gaji_pokok='" . $gajiPokok . "',";
+    $value .= "transportasi='" . $transportasi . "',";
+    $value .= "gaji_bersih='" . $gajiBersih . "'";
+
+    $SQL = str_replace("val", $value, $SQL);
+    echo  $SQL;
+    $result = $conn->query($SQL);
+    if ($result) {
+      $_SESSION['pesan'] = "Data pegawai  berhasil diperbaharui";
+      header("location:index.php");
+    } else {
+      echo "Data gagal diperbaharui";
+    }
+  }
   ?>
   <form action="" method="POST">
     <table>
