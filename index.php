@@ -9,6 +9,7 @@
 
 <body>
   <?php
+  session_start();
   require_once "koneksi.php";
 
   $SQL = "SELECT * FROM tb_pegawai";
@@ -17,6 +18,7 @@
   <h1>Data Pegawai</h1>
   <a href="add.php"><button>Tambah</button></a>
   <hr>
+  <?php require_once "message.php"; ?>
   <table border="1">
     <tr>
       <th>KODE PEGAWAI</th>

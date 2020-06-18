@@ -9,6 +9,7 @@
 
 <body>
   <?php
+  session_start();
   require_once "koneksi.php";
   require_once "helper.php";
 
@@ -35,6 +36,7 @@
     echo  $SQL;
     $result = $conn->query($SQL);
     if ($result) {
+      $_SESSION['pesan'] = "Data pegawai  berhasil disimpan";
       header("location:index.php");
     } else {
       echo "Data gagal disimpan";
