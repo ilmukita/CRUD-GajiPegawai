@@ -52,7 +52,7 @@
         <td>Rp.<?= number_format($d['gaji_bersih'], 0, ',', '.') ?></td>
         <td>
           <a href="update.php?kd=<?= $d['kode_pegawai'] ?>"><button>Update</button></a>
-          <a href=""><button>Delete</button></a>
+          <a href="delete.php?kd=<?= $d['kode_pegawai'] ?>" onclick="return confirm('Yakin akan dihapus?')"><button>Delete</button></a>
         </td>
       </tr>
     <?php endwhile; ?>
