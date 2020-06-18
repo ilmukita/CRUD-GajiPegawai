@@ -9,9 +9,16 @@
 
 <body>
   <?php
+  require_once "koneksi.php";
+  require_once "helper.php";
+
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $kode_pegawai = kode_pegawai($conn);
     $nama = $_POST['nama'];
     $jabatan = $_POST['jabatan'];
+    $gajiPokok = hitung_gajiPokok($jabatan);
+    $tranportasi = hitung_transportasi($gajiPokok);
+    $gajiBersih = hitung_gajiBersih($gajiPokok, $tranportasi);
   }
   ?>
   <h1>Tambah Pegawai</h1>
