@@ -17,8 +17,28 @@
     $nama = $_POST['nama'];
     $jabatan = $_POST['jabatan'];
     $gajiPokok = hitung_gajiPokok($jabatan);
-    $tranportasi = hitung_transportasi($gajiPokok);
-    $gajiBersih = hitung_gajiBersih($gajiPokok, $tranportasi);
+    $transportasi = hitung_transportasi($gajiPokok);
+    $gajiBersih = hitung_gajiBersih($gajiPokok, $transportasi);
+
+    $SQL = "INSERT INTO tb_pegawai (col_name) VALUES (val)";
+
+    $col_name = "kode_pegawai,nama,jabatan,gaji_pokok,transportasi,gaji_bersih";
+    $value = "'" . $kode_pegawai . "',";
+    $value .= "'" . $nama . "',";
+    $value .= "'" . $jabatan . "',";
+    $value .= "'" . $gajiPokok . "',";
+    $value .= "'" . $transportasi . "',";
+    $value .= "'" . $gajiBersih . "'";
+
+    $SQL = str_replace("col_name", $col_name, $SQL);
+    $SQL = str_replace("val", $value, $SQL);
+    echo  $SQL;
+    $result = $conn->query($SQL);
+    if ($result) {
+      header("location:index.php");
+    } else {
+      echo "Data gagal disimpan";
+    }
   }
   ?>
   <h1>Tambah Pegawai</h1>
