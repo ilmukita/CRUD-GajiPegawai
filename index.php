@@ -12,13 +12,26 @@
   session_start();
   require_once "koneksi.php";
 
-  $SQL = "SELECT * FROM tb_pegawai";
+  $cari = (isset($_GET['cari'])) ? $_GET['cari'] : "";
+
+  if ($cari == "") {
+    $SQL = "SELECT * FROM tb_pegawai";
+  } else {
+    $SQL = "SELECT * FROM tb_pegawai WHERE kode_pegawai='" . $cari . "' OR nama LIKE '%" . $cari . "%'";
+  }
+
   $result = $conn->query($SQL);
   ?>
+
   <h1>Data Pegawai</h1>
   <a href="add.php"><button>Tambah</button></a>
   <hr>
   <?php require_once "message.php"; ?>
+  <form style="display: inline;" action="" method="get">
+    <input type="text" name="cari" placeholder="Cari kode/nama">
+    <input type="submit" value="Cari">
+  </form>
+  <a href="index.php"><button>Refresh</button></a>
   <table border="1">
     <tr>
       <th>KODE PEGAWAI</th>
